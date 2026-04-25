@@ -1,0 +1,37 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Producto {
+  id          Int      @id @default(autoincrement())
+  nombre      String
+  categoria   String
+  stockActual Int      @default(0) @map("stock_actual")
+  stockMinimo Int      @default(0) @map("stock_minimo")
+  precioVenta Float    @map("precio_venta")
+  precioCosto Float    @map("precio_costo")
+  createdAt   DateTime @default(now()) @map("created_at")
+  updatedAt   DateTime @updatedAt @map("updated_at")
+
+  movimientos Movimiento[]
+
+  @@map("productos")
+}
+
+model Movimiento {
+  id         Int      @id @default(autoincrement())
+  productoId Int      @map("producto_id")
+  tipo       String
+  cantidad   Int
+  motivo     String?
+  fecha      DateTime @default(now())
+
+  producto Producto @relation(fields: [productoId], references: [id], onDelete: Cascade)
+
+  @@map("movimientos")
+}
