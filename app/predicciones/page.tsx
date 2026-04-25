@@ -87,10 +87,10 @@ export default function PrediccionesPage() {
         head: [['Producto', 'Categoría', 'Stock\nActual', 'Días\nStock', 'Quiebre\nEst.', 'Cant.\nSugerida', 'Precio\nCosto', 'Costo\nOrden', 'Urgencia']],
         body: conSugerencia.map(p => [p.nombre, p.categoria, p.stockActual, p.diasRestantes ?? 'N/A', p.fechaQuiebre ? formatDateShort(p.fechaQuiebre) : 'N/A', p.cantidadSugerida, formatCLP(p.precioCosto), formatCLP(p.costoOrden), URGENCIA[p.urgencia].label]),
         foot: [['', '', '', '', '', '', 'TOTAL', formatCLP(costoTotal), '']],
-        styles: { fontSize: 8, cellPadding: 3, fillColor: [19, 31, 53], textColor: [241, 245, 249], lineColor: [255, 255, 255, 0.06], lineWidth: 0.2 },
-        headStyles: { fillColor: [37, 99, 235], textColor: [255, 255, 255], fontStyle: 'bold', fontSize: 8 },
-        footStyles: { fillColor: [11, 17, 32], textColor: [241, 245, 249], fontStyle: 'bold' },
-        alternateRowStyles: { fillColor: [15, 26, 46] },
+        styles: { fontSize: 8, cellPadding: 3, fillColor: [19, 31, 53] as [number,number,number], textColor: [241, 245, 249] as [number,number,number], lineColor: [50, 60, 80] as [number,number,number], lineWidth: 0.2 },
+        headStyles: { fillColor: [37, 99, 235] as [number,number,number], textColor: [255, 255, 255] as [number,number,number], fontStyle: 'bold', fontSize: 8 },
+        footStyles: { fillColor: [11, 17, 32] as [number,number,number], textColor: [241, 245, 249] as [number,number,number], fontStyle: 'bold' },
+        alternateRowStyles: { fillColor: [15, 26, 46] as [number,number,number] },
       })
       doc.save(`orden-compra-${new Date().toISOString().split('T')[0]}.pdf`)
     } finally { setExportingPdf(false) }
