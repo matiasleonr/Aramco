@@ -13,7 +13,7 @@ interface Producto {
   precioVenta: number; precioCosto: number
 }
 
-const EMPTY_FORM = {
+const EMPTY_FORM: { nombre: string; categoria: string; stockActual: string; stockMinimo: string; precioVenta: string; precioCosto: string } = {
   nombre: '', categoria: CATEGORIAS[0],
   stockActual: '', stockMinimo: '', precioVenta: '', precioCosto: '',
 }
